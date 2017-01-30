@@ -10,7 +10,8 @@ services:
       - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
       - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
       - "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
-      - "AWS_NGS_BUCKET=${AWS_NGS_BUCKET}"
+      - "BUCKET_HARVESTED=${BUCKET_HARVESTED}"
+      - "BUCKET_ROUTES=${BUCKET_ROUTES}"
     volumes:
       - .:/home/ngs-route-generator
       - /home/ngs-route-generator/node_modules
@@ -23,7 +24,8 @@ services:
       - "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
       - "AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}"
       - "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
-      - "AWS_NGS_BUCKET=${AWS_NGS_BUCKET}"
+      - "BUCKET_HARVESTED=${BUCKET_HARVESTED}"
+      - "BUCKET_ROUTES=${BUCKET_ROUTES}"
     volumes:
       - .:/home/ngs-route-generator
       - /home/ngs-route-generator/node_modules
