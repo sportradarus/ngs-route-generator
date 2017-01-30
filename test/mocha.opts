@@ -1,0 +1,6 @@
+--require should test/migrate.js
+--ui bdd
+--slow 1000ms
+--timeout 10000ms
+--reporter spec
+--recursive

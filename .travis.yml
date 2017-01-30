@@ -1,0 +1,28 @@
+sudo: required
+dist: precise
+language: node_js
+node_js:
+- 4.3.0
+env:
+  global:
+  - NODE_ENV: test
+cache:
+  directories:
+  - node_modules
+notifications:
+  slack: sportradarsf:pEn7I4WLzHGvvgPalFUhiNlH
+before_install:
+- npm prune
+install:
+- npm install -g node-lambda
+- npm install
+before_script:
+- echo "AWS_ENVIRONMENT=" > .env
+- sleep 3
+script: npm run mocha
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: npm run deploy-lg 
+  on:
+    branch: master

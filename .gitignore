@@ -1,0 +1,5 @@
+ngs-data/*
+node_modules
+npm-debug.log
+.env
+ngs-pipeline-*
