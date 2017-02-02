@@ -5,6 +5,7 @@ AWS.config.update({region:'us-west-2'});
 var s3 = new AWS.S3();
 
 function upload(bucket, localFile, key) {
+	console.log('uploading...');
 	return new Promise(function(resolve, reject) {
 		var opts = {
 			Bucket: bucket,
@@ -25,6 +26,7 @@ function upload(bucket, localFile, key) {
 }
 
 function checkForFile(bucket, pngFile) {
+	console.log('checkForFile...');
 	return new Promise(function(resolve, reject) {
 		var opts = {
 			Bucket: bucket,
@@ -43,7 +45,7 @@ function checkForFile(bucket, pngFile) {
 }
 
 function getJSONFile(bucket, fileName) {
-
+	console.log('getJSONFile...');
 	var options = {
 		Bucket: bucket,
 		Key: fileName,
