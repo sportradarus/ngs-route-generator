@@ -40,9 +40,11 @@ class Player extends Headshots {
 		this.yards = stat.yards;
 		this.touchdown = stat.touchdown;
 		this.firstdown = stat.firstdown;
+		this.reception = stat.reception;
 		this.tracking = {
 			data: [],
 			events: {},
+			maxSpeed: 0,
 			xMax: 0,
 			yMax: 0,
 			xMin: 0,
@@ -51,6 +53,7 @@ class Player extends Headshots {
 		this.inPlayTracking = {
 			data: [],
 			events: {},
+			maxSpeed: 0,
 			xMax: 0,
 			yMax: 0,
 			xMin: 0,
@@ -64,6 +67,10 @@ class Player extends Headshots {
 		_.forEach(this.tracking.data, (t) => {
 			if (t.event) {
 				this.tracking.events[t.event] = t;
+			}
+			if (t.s > this.tracking.maxSpeed) {
+				this.tracking.maxSpeed = t.s;
+				this.tracking.events['top_speed'] = t;
 			}
 			if (t.x > this.tracking.xMax) {
 				this.tracking.xMax = t.x;
@@ -94,7 +101,10 @@ class Player extends Headshots {
 				if (t.event) {
 					this.inPlayTracking.events[t.event] = t;
 				}
-
+				if (t.s > this.inPlayTracking.maxSpeed) {
+					this.inPlayTracking.maxSpeed = t.s;
+					this.inPlayTracking.events['top_speed'] = t;
+				}
 				if (t.x > this.inPlayTracking.xMax) {
 					this.inPlayTracking.xMax = t.x;
 				}

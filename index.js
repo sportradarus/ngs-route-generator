@@ -4,6 +4,7 @@ const Promise = require('bluebird');
 const _ = require('lodash');
 const AWS = require('aws-sdk');
 const request = require('request');
+const moment = require('moment');
 const fs = require('fs');
 
 
@@ -23,16 +24,7 @@ const fieldConfig = {
 };
 
 
-function rotate(cx, cy, x, y, angle) {
-	let radians = (Math.PI / 180) * angle;
-	let cos = Math.cos(radians);
-	let sin = Math.sin(radians);
-	let nx = (cos * (x - cx)) + (sin * (y - cy)) + cx;
-	let ny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
-	return [nx, ny];
-}
-
-function intersects(field, centerX, centerY, offset) {
+function checkBounds(field, centerX, centerY, offset) {
 	let playerX = field.getX( centerX + offset );
 	let playerY = field.getY( centerY ) - (photoSize / 2);
 	let center = {
@@ -48,12 +40,6 @@ function intersects(field, centerX, centerY, offset) {
 		playerY = field.fieldHeight - nameSize;
 	}
 
-	// while(playerX < 0 || playerY < 0 || (playerX + nameSize) > field.fieldWidth || (playerY + nameSize) > field.fieldHeight) {
-	// 	let newCoords = rotate( center.x, center.y, playerX, playerY, 2);
-	// 	console.log(newCoords);
-	// 	playerX = newCoords[0];
-	// 	playerY = newCoords[1];
-	// }
 	return {
 		x: playerX,
 		y: playerY
@@ -98,9 +84,7 @@ exports.handler = function(event, context, callback) {
 	.then((file) => {
 		
 		field.getAbsYardline(file);
-
 		players = new Players(event.statistics, file.homeTrackingData.concat(file.awayTrackingData));
-	
 
 		// download player headshots (png needs to be local to add to pdf)
 		var promises = [];
@@ -126,19 +110,28 @@ exports.handler = function(event, context, callback) {
 		
 		// draw player lines		
 		_.forEach(players.players, (player) => {
-			_.forEach(player.inPlayTracking.data, (tracking, index) => {
-				if (!index) {
-					pdf.doc.moveTo(field.getX(tracking.x), field.getY(tracking.y));
-				} else {
-					pdf.doc.lineTo(field.getX(tracking.x), field.getY(tracking.y));
-				}
-			});
+			
 			if (["QB","RB","WR","TE","FB"].indexOf(player.position) !== -1) {
-				pdf.doc.strokeColor("green");
+				pdf.doc.strokeColor("#458B00");
 			} else {
 				pdf.doc.strokeColor("#333333");
 				pdf.doc.strokeOpacity(0.8);
 			}
+
+			_.forEach(player.inPlayTracking.data, (tracking, index) => {
+				if (!index) {
+					pdf.doc.moveTo(field.getX(tracking.x), field.getY(tracking.y));
+				} else {
+					
+					if (tracking.event == 'pass_outcome_caught' && player.reception) {
+						pdf.doc.stroke();
+						pdf.doc.strokeColor("#66CD00");
+					}
+					
+					pdf.doc.lineTo(field.getX(tracking.x), field.getY(tracking.y));
+				}
+			});
+			
 			pdf.doc.stroke();
 		});
 
@@ -173,11 +166,33 @@ exports.handler = function(event, context, callback) {
 					receiver = rb;
 				}
 
+				let topSpeed = Math.round((receiver.inPlayTracking.maxSpeed * 2.04545) * 10) / 10;
+
 				pdf.doc.circle(
 					field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
 					field.getY( receiver.inPlayTracking.events[passOutcome].y ),
 					2
 				);
+
+				let topSpeedTxtY = receiver.inPlayTracking.events['top_speed'].y + 10;
+				if (receiver.inPlayTracking.events['top_speed'].y > (fieldConfig.height / 2)) {
+					topSpeedTxtY = receiver.inPlayTracking.events['top_speed'].y - 10;
+				}
+
+				pdf.doc.moveTo(
+					field.getX( receiver.inPlayTracking.events['top_speed'].x ), 
+					field.getY( receiver.inPlayTracking.events['top_speed'].y )
+				)
+				.lineTo(
+					field.getX( receiver.inPlayTracking.events['top_speed'].x + 10 ), 
+					field.getY( topSpeedTxtY )
+				)
+				.dash(5, {space: 2})
+				.strokeColor("#ff9900")
+				.stroke()
+				.fontSize(5)
+				.text('Top Speed ' + topSpeed + 'mph', field.getX( receiver.inPlayTracking.events['top_speed'].x + 11 ), field.getY(topSpeedTxtY + 0.5));
+
 				
 				pdf.doc.moveTo(
 					field.getX( qb.inPlayTracking.events['pass_forward'].x ), 
@@ -204,11 +219,11 @@ exports.handler = function(event, context, callback) {
 					rOffset = 6;
 				}
 
-				let qbAdjusted = intersects( field, qb.inPlayTracking.events['pass_forward'].x, qb.inPlayTracking.events['pass_forward'].y, qbOffset);	
+				let qbAdjusted = checkBounds( field, qb.inPlayTracking.events['pass_forward'].x, qb.inPlayTracking.events['pass_forward'].y, qbOffset);	
 				qbHeadX = qbAdjusted.x;
 				qbHeadY = qbAdjusted.y;
 				
-				let rAdjusted = intersects( field, receiver.inPlayTracking.events[passOutcome].x, receiver.inPlayTracking.events[passOutcome].y, rOffset);
+				let rAdjusted = checkBounds( field, receiver.inPlayTracking.events[passOutcome].x, receiver.inPlayTracking.events[passOutcome].y, rOffset);
 				receiverHeadX = rAdjusted.x;
 				receiverHeadY = rAdjusted.y;
 				
@@ -227,13 +242,21 @@ exports.handler = function(event, context, callback) {
 					statDesc += ' completion';
 				}
 
+				let statContext = event.clock + ', ' + moment().dayOfYear(event.start_situation.down).format('DDDo') + ' & ' + event.start_situation.yfd;
+				if (event.period) {
+					statContext = moment().dayOfYear(event.period).format('DDDo') + ' Quarter, ' + statContext;
+				}
+
 				pdf.doc.image(base + qb.gsisId + '.png', qbHeadX, qbHeadY, { fit: [ photoSize, photoSize] })
 				.fontSize(5)
 				.text(qb.name, (qbHeadX + (photoSize / 2)) - (nameSize / 2), (qbHeadY + photoSize + 1), { width: nameSize, align: 'center'} )
 				.image(base + receiver.gsisId + '.png', receiverHeadX, receiverHeadY, { fit: [photoSize, photoSize] })
 				.text(receiver.name, (receiverHeadX + (photoSize/2)) - (nameSize / 2), (receiverHeadY + photoSize + 1), { width: nameSize, align: 'center'} )
+				.moveDown(0.1)
 				.fontSize(8)
-				.text(statDesc, 15, 15, statPlacement )
+				.text(statContext, 15, 5, statPlacement )	
+				.moveDown(.2)
+				.text(statDesc, statPlacement )	
 				
 			}
 
