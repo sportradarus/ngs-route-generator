@@ -13,6 +13,7 @@ class Field {
 		this.fieldWidth = this.baseFieldWidth * this.mag;
 		this.fieldHeight = this.baseFieldHeight * this.mag;
 		this.absYardline = false;
+		this.direction = '';
 	}
 
 	getX(x) {
@@ -37,6 +38,7 @@ class Field {
 		} else {
 			this.absYardline = (file.play.yardlineNumber + 10);
 		}
+		this.direction = file.play.playDirection;
 	}
 
 	drawField() {
