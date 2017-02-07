@@ -37,17 +37,24 @@ class Player extends Headshots {
 		this.name = stat.player.name;
 		this.jersey = stat.player.jersey;
 		this.headshot = this.getHeadshot(this.srusId);
+		this.yards = stat.yards;
+		this.touchdown = stat.touchdown;
+		this.firstdown = stat.firstdown;
 		this.tracking = {
 			data: [],
 			events: {},
 			xMax: 0,
-			yMax: 0
+			yMax: 0,
+			xMin: 0,
+			yMin: 0
 		};
 		this.inPlayTracking = {
 			data: [],
 			events: {},
 			xMax: 0,
-			yMax: 0
+			yMax: 0,
+			xMin: 0,
+			yMin: 0
 		};
 	}
 
@@ -61,8 +68,14 @@ class Player extends Headshots {
 			if (t.x > this.tracking.xMax) {
 				this.tracking.xMax = t.x;
 			}
-			if (t.y > this.yMax) {
-				this.yMax = t.y;
+			if (t.y > this.tracking.yMax) {
+				this.tracking.yMax = t.y;
+			}
+			if (t.x < this.tracking.xMin) {
+				this.tracking.xMin = t.x;
+			}
+			if (t.y < this.tracking.yMin) {
+				this.tracking.yMin = t.y;
 			}
 		});
 	}
@@ -86,7 +99,13 @@ class Player extends Headshots {
 					this.inPlayTracking.xMax = t.x;
 				}
 				if (t.y > this.inPlayTracking.yMax) {
-					this.inPlayTracking.uMax = t.y;
+					this.inPlayTracking.yMax = t.y;
+				}
+				if (t.x < this.inPlayTracking.xMin) {
+					this.inPlayTracking.xMin = t.x;
+				}
+				if (t.y < this.inPlayTracking.yMin) {
+					this.inPlayTracking.yMin = t.y;
 				}
 			}
 

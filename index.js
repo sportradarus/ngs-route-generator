@@ -14,13 +14,51 @@ const PNG = require('./common').png;
 const Field = require('./field');
 const Players = require('./players');
 
-
+const photoSize = 20;
+const nameSize = 40;	// size of text box below photo for name 
 const fieldConfig = {
 	width: 120,
 	height: 53.3,
 	mag: 3
 };
 
+
+function rotate(cx, cy, x, y, angle) {
+	let radians = (Math.PI / 180) * angle;
+	let cos = Math.cos(radians);
+	let sin = Math.sin(radians);
+	let nx = (cos * (x - cx)) + (sin * (y - cy)) + cx;
+	let ny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
+	return [nx, ny];
+}
+
+function intersects(field, centerX, centerY, offset) {
+	let playerX = field.getX( centerX + offset );
+	let playerY = field.getY( centerY ) - (photoSize / 2);
+	let center = {
+		x: field.getX(centerX),
+		y: field.getY(centerY)
+	};
+
+	// adjust based on field bounds
+	if (playerX + nameSize > field.fieldWidth) {
+		playerX = field.fieldWidth - nameSize;
+	}
+	if (playerY + nameSize > field.fieldHeight) {
+		playerY = field.fieldHeight - nameSize;
+	}
+
+	// while(playerX < 0 || playerY < 0 || (playerX + nameSize) > field.fieldWidth || (playerY + nameSize) > field.fieldHeight) {
+	// 	let newCoords = rotate( center.x, center.y, playerX, playerY, 2);
+	// 	console.log(newCoords);
+	// 	playerX = newCoords[0];
+	// 	playerY = newCoords[1];
+	// }
+	return {
+		x: playerX,
+		y: playerY
+	};
+}
 
 
 
@@ -105,9 +143,8 @@ exports.handler = function(event, context, callback) {
 		});
 
 
-		
 		// for passing completions, draw pass from QB to WR				
-		if (players.events.indexOf('pass_forward') !== -1 && players.events.indexOf('pass_outcome_caught') !== -1) {
+		if (players.events.indexOf('pass_forward') !== -1 && (players.events.indexOf('pass_outcome_caught') !== -1 || players.events.indexOf('pass_outcome_touchdown') !== -1)) {
 			
 			let qb = _.find(players.players, { 'position': 'QB' });
 			let wr = _.find(players.players, { 'position': 'WR' });
@@ -117,6 +154,11 @@ exports.handler = function(event, context, callback) {
 			
 			if (qb && (wr || te || rb)) {
 				
+				let passOutcome = 'pass_outcome_caught';
+				if (players.events.indexOf('pass_outcome_touchdown') !== -1) {
+					passOutcome = 'pass_outcome_touchdown';
+				}
+
 				pdf.doc.circle(
 					field.getX( qb.inPlayTracking.events['pass_forward'].x ),
 					field.getY( qb.inPlayTracking.events['pass_forward'].y ),
@@ -132,8 +174,8 @@ exports.handler = function(event, context, callback) {
 				}
 
 				pdf.doc.circle(
-					field.getX( receiver.inPlayTracking.events['pass_outcome_caught'].x ), 
-					field.getY( receiver.inPlayTracking.events['pass_outcome_caught'].y ),
+					field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
+					field.getY( receiver.inPlayTracking.events[passOutcome].y ),
 					2
 				);
 				
@@ -142,19 +184,56 @@ exports.handler = function(event, context, callback) {
 					field.getY( qb.inPlayTracking.events['pass_forward'].y )
 				)
 				.lineTo(
-					field.getX( receiver.inPlayTracking.events['pass_outcome_caught'].x ), 
-					field.getY( receiver.inPlayTracking.events['pass_outcome_caught'].y )
+					field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
+					field.getY( receiver.inPlayTracking.events[passOutcome].y )
 				)
 				.dash(5, {space: 2})
 				.strokeColor("#c30222")
 				.stroke();
 
 				
-				pdf.doc.image(base + qb.gsisId + '.png', 5, 5, { fit: [20, 20] })
+				let qbHeadX = 0;
+				let qbHeadY = 0;
+				let receiverHeadX = 0;
+				let receiverHeadY = 0;
+				let qbOffset = 5;
+				let rOffset = -8;
+
+				if (field.direction == 'right') {
+					qbOffset = -8;
+					rOffset = 6;
+				}
+
+				let qbAdjusted = intersects( field, qb.inPlayTracking.events['pass_forward'].x, qb.inPlayTracking.events['pass_forward'].y, qbOffset);	
+				qbHeadX = qbAdjusted.x;
+				qbHeadY = qbAdjusted.y;
+				
+				let rAdjusted = intersects( field, receiver.inPlayTracking.events[passOutcome].x, receiver.inPlayTracking.events[passOutcome].y, rOffset);
+				receiverHeadX = rAdjusted.x;
+				receiverHeadY = rAdjusted.y;
+				
+
+				let statPlacement = { width: (field.fieldWidth - 30), align: 'right'};
+				if (field.absYardline > 60) {
+					statPlacement = { width: (field.fieldWidth - 30), align: 'left' };
+				}
+
+				let statDesc = qb.yards + ' yard';
+				if (qb.touchdown) {
+					statDesc += ' touchdown pass';
+				} else if (qb.firstdown) {
+					statDesc += ' pass for 1st down';
+				} else {
+					statDesc += ' completion';
+				}
+
+				pdf.doc.image(base + qb.gsisId + '.png', qbHeadX, qbHeadY, { fit: [ photoSize, photoSize] })
 				.fontSize(5)
-				.text(qb.name, 5, 25, { width: 75, align: 'center'} )
-				.image(base + receiver.gsisId + '.png', 5, 35, { fit: [20, 20] })
-				.text(receiver.name, 5, 55, { width: 75, align: 'center'} )
+				.text(qb.name, (qbHeadX + (photoSize / 2)) - (nameSize / 2), (qbHeadY + photoSize + 1), { width: nameSize, align: 'center'} )
+				.image(base + receiver.gsisId + '.png', receiverHeadX, receiverHeadY, { fit: [photoSize, photoSize] })
+				.text(receiver.name, (receiverHeadX + (photoSize/2)) - (nameSize / 2), (receiverHeadY + photoSize + 1), { width: nameSize, align: 'center'} )
+				.fontSize(8)
+				.text(statDesc, 15, 15, statPlacement )
 				
 			}
 

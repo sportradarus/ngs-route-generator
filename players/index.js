@@ -12,6 +12,8 @@ class Players {
 	constructor(stats, allTracking) {
 		this.xMax = 0;
 		this.yMax = 0;
+		this.xMin = 0;
+		this.yMin = 0;
 		this.players = [];
 		this.events = [];
 
@@ -56,6 +58,12 @@ class Players {
 			}
 			if (current.inPlayTracking.yMax > this.yMax) {
 				this.yMax = current.inPlayTracking.yMax;
+			}
+			if (current.inPlayTracking.xMin < this.xMin) {
+				this.xMin = current.inPlayTracking.xMin;
+			}
+			if (current.inPlayTracking.yMin < this.yMin) {
+				this.yMin = current.inPlayTracking.yMin;
 			}
 
 			// track events
