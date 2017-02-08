@@ -16,7 +16,7 @@
     "scripts": {
 		"build": "docker-compose build",
 		
-		"test-create-route": "docker-compose run app node-lambda run --eventFile=./test/freeman-long-run.json --handler index.handler",
+		"test-create-route": "docker-compose run app node-lambda run --eventFile=./test/mitchell-incomplete.json --handler index.handler",
 		
 		"deploy-route": "node-lambda deploy --region us-west-2 --functionName ngs-route-generator --handler index.handler --role arn:aws:iam::165158022346:role/lambda_basic_execution --memorySize 1024 --timeout 30 --description 'Creates NGS route visualization' --runtime nodejs4.3 --vpcSubnets subnet-c7aca4b1,subnet-0999686e --vpcSecurityGroups sg-0256517b --excludeGlobs [\".env Dockerfile docker-compose* test **/tests states.json .travis.yml ngs-data README.md\"]",
 			

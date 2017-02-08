@@ -33,6 +33,12 @@ function checkBounds(field, centerX, centerY, offset) {
 	};
 
 	// adjust based on field bounds
+	if (playerX < 0) {
+		playerX = 0;
+	}
+	if (playerY < 0) {
+		playerY = 0;
+	}
 	if (playerX + nameSize > field.fieldWidth) {
 		playerX = field.fieldWidth - nameSize;
 	}

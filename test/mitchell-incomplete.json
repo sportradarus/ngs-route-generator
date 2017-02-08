@@ -1,0 +1,143 @@
+{
+              "gsisGameId": 57167,
+              "period": 2,
+              "type": "play",
+              "id": "46f944df-6383-4a09-acf7-4314f7af7db8",
+              "sequence": 943,
+              "reference": "943",
+              "clock": "12:10",
+              "home_points": 7,
+              "away_points": 0,
+              "play_type": "pass",
+              "play_clock": 6,
+              "wall_clock": "2017-02-06T00:20:19+00:00",
+              "players_rushed": 4,
+              "men_in_box": 5,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Right Sideline",
+              "hash_mark": "Right Hash",
+              "pocket_location": "Middle",
+              "qb_at_snap": "Shotgun",
+              "huddle": "Huddle",
+              "pass_route": "Go",
+              "start_situation": {
+                "clock": "12:10",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 16
+                }
+              },
+              "end_situation": {
+                "clock": "12:04",
+                "down": 2,
+                "yfd": 10,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 16
+                }
+              },
+              "description": "(12:10) (Shotgun) 12-T.Brady pass incomplete deep right to 19-M.Mitchell (29-C.Goodwin).",
+              "alt_description": "(12:10) (Shotgun) T.Brady pass incomplete deep right to M.Mitchell (C.Goodwin).",
+              "statistics": [
+                {
+                  "stat_type": "pass",
+                  "attempt": 1,
+                  "complete": 0,
+                  "att_yards": 22,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "incompletion_type": "Pass Defended",
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "pocket_time": 2.403,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Tom Brady",
+                    "jersey": "12",
+                    "reference": "00-0019596",
+                    "id": "41c44740-d0f6-44ab-8347-3b5d515e5ecf",
+                    "position": "QB"
+                  }
+                },
+                {
+                  "stat_type": "receive",
+                  "target": 1,
+                  "dropped": 0,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "catchable": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Malcolm Mitchell",
+                    "jersey": "19",
+                    "reference": "00-0032400",
+                    "id": "c3ed9a9b-3e7d-4533-8224-a0b89adcd9da",
+                    "position": "WR"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "pass_defended": 1,
+                  "def_target": 1,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "C.J. Goodwin",
+                    "jersey": "29",
+                    "reference": "00-0031357",
+                    "id": "6d62aaa2-fe41-4672-941f-7314a0b9b367",
+                    "position": "CB"
+                  }
+                }
+              ]
+            }
