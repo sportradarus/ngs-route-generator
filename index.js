@@ -86,6 +86,9 @@ exports.handler = function(event, context, callback) {
 		field.getAbsYardline(file);
 		players = new Players(event.statistics, file.homeTrackingData.concat(file.awayTrackingData));
 
+		field.drawField();
+		field.drawScrimmage();
+
 		// download player headshots (png needs to be local to add to pdf)
 		var promises = [];
 		_.forEach(players.players, (player) => {
@@ -157,7 +160,7 @@ exports.handler = function(event, context, callback) {
 					field.getY( qb.inPlayTracking.events['pass_forward'].y ),
 					2
 				);
-			
+				
 				if (wr) {
 					receiver = wr;
 				} else if (te) {
@@ -166,34 +169,33 @@ exports.handler = function(event, context, callback) {
 					receiver = rb;
 				}
 
-				let topSpeed = Math.round((receiver.inPlayTracking.maxSpeed * 2.04545) * 10) / 10;
-
 				pdf.doc.circle(
 					field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
 					field.getY( receiver.inPlayTracking.events[passOutcome].y ),
 					2
-				);
+				)
+				.lineWidth(1)
+				.fillAndStroke("#FFA500", "#ff9900");
 
-				let topSpeedTxtY = receiver.inPlayTracking.events['top_speed'].y + 10;
-				if (receiver.inPlayTracking.events['top_speed'].y > (fieldConfig.height / 2)) {
-					topSpeedTxtY = receiver.inPlayTracking.events['top_speed'].y - 10;
-				}
+				let topSpeed = Math.round(receiver.inPlayTracking.maxSpeed * 2.04545);
 
-				pdf.doc.moveTo(
+				pdf.doc.circle(
 					field.getX( receiver.inPlayTracking.events['top_speed'].x ), 
-					field.getY( receiver.inPlayTracking.events['top_speed'].y )
+					field.getY( receiver.inPlayTracking.events['top_speed'].y ),
+					4
 				)
-				.lineTo(
-					field.getX( receiver.inPlayTracking.events['top_speed'].x + 10 ), 
-					field.getY( topSpeedTxtY )
-				)
-				.dash(5, {space: 2})
-				.strokeColor("#ff9900")
-				.stroke()
-				.fontSize(5)
-				.text('Top Speed ' + topSpeed + 'mph', field.getX( receiver.inPlayTracking.events['top_speed'].x + 11 ), field.getY(topSpeedTxtY + 0.5));
+				.lineWidth(1)
+				.fillAndStroke("white", "#ff0000");
+
+				pdf.doc.fontSize(4)
+				.fillColor("black")
+				.text(topSpeed, field.getX( receiver.inPlayTracking.events['top_speed'].x ) - 4, field.getY( receiver.inPlayTracking.events['top_speed'].y ) - 1.5, { width: 8, align: 'center' } );
+				
+
+
 
 				
+
 				pdf.doc.moveTo(
 					field.getX( qb.inPlayTracking.events['pass_forward'].x ), 
 					field.getY( qb.inPlayTracking.events['pass_forward'].y )
@@ -212,7 +214,7 @@ exports.handler = function(event, context, callback) {
 				let receiverHeadX = 0;
 				let receiverHeadY = 0;
 				let qbOffset = 5;
-				let rOffset = -8;
+				let rOffset = -11;
 
 				if (field.direction == 'right') {
 					qbOffset = -8;
@@ -229,7 +231,7 @@ exports.handler = function(event, context, callback) {
 				
 
 				let statPlacement = { width: (field.fieldWidth - 30), align: 'right'};
-				if (field.absYardline > 60) {
+				if (receiver.inPlayTracking.events[passOutcome].x > 60) {
 					statPlacement = { width: (field.fieldWidth - 30), align: 'left' };
 				}
 
@@ -263,10 +265,6 @@ exports.handler = function(event, context, callback) {
 			
 		}
 
-		field.drawField();
-		field.drawScrimmage();
-		
-		
 		pdf.docStream.on('finish', () => {
 			console.log('done streaming');
 			Promise.resolve();
