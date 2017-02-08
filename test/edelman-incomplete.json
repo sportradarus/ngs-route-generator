@@ -1,0 +1,142 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "406f5171-0e11-40d1-8516-464de8855267",
+              "sequence": 1253,
+              "reference": "1253",
+              "clock": "8:12",
+              "home_points": 14,
+              "away_points": 0,
+              "play_type": "pass",
+              "play_clock": 11,
+              "wall_clock": "2017-02-06T00:33:41+00:00",
+              "players_rushed": 4,
+              "men_in_box": 6,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Middle",
+              "hash_mark": "Left Hash",
+              "pocket_location": "Middle",
+              "qb_at_snap": "Shotgun",
+              "huddle": "Huddle",
+              "pass_route": "Corner",
+              "start_situation": {
+                "clock": "8:12",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 37
+                }
+              },
+              "end_situation": {
+                "clock": "8:07",
+                "down": 2,
+                "yfd": 10,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 37
+                }
+              },
+              "description": "(8:12) (Shotgun) 12-T.Brady pass incomplete short middle to 11-J.Edelman.",
+              "alt_description": "(8:12) (Shotgun) T.Brady pass incomplete short middle to J.Edelman.",
+              "statistics": [
+                {
+                  "stat_type": "pass",
+                  "attempt": 1,
+                  "complete": 0,
+                  "att_yards": 15,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "incompletion_type": "Poorly Thrown",
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "pocket_time": 3.007,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Tom Brady",
+                    "jersey": "12",
+                    "reference": "00-0019596",
+                    "id": "41c44740-d0f6-44ab-8347-3b5d515e5ecf",
+                    "position": "QB"
+                  }
+                },
+                {
+                  "stat_type": "receive",
+                  "target": 1,
+                  "dropped": 0,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "catchable": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Julian Edelman",
+                    "jersey": "11",
+                    "reference": "00-0027150",
+                    "id": "2bb70d56-a79a-4fa1-ae37-99858a3ffd55",
+                    "position": "WR"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "def_target": 1,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Deion Jones",
+                    "jersey": "45",
+                    "reference": "00-0032388",
+                    "id": "a2a587d3-2971-41f5-a5d4-828d9cf1494e",
+                    "position": "LB"
+                  }
+                }
+              ]
+            }

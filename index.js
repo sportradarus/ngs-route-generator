@@ -139,9 +139,17 @@ exports.handler = function(event, context, callback) {
 		});
 
 
+		let statContext = event.clock + ', ' + moment().dayOfYear(event.start_situation.down).format('DDDo') + ' & ' + event.start_situation.yfd;
+		if (event.period) {
+			statContext = moment().dayOfYear(event.period).format('DDDo') + ' Quarter, ' + statContext;
+		}
+
+
 		// for passing completions, draw pass from QB to WR				
-		if (players.events.indexOf('pass_forward') !== -1 && (players.events.indexOf('pass_outcome_caught') !== -1 || players.events.indexOf('pass_outcome_touchdown') !== -1)) {
+		if (event.play_type == 'pass' && players.events.indexOf('pass_forward') !== -1) {
 			
+			console.log()
+
 			let qb = _.find(players.players, { 'position': 'QB' });
 			let wr = _.find(players.players, { 'position': 'WR' });
 			let te = _.find(players.players, { 'position': 'TE' });
@@ -153,13 +161,19 @@ exports.handler = function(event, context, callback) {
 				let passOutcome = 'pass_outcome_caught';
 				if (players.events.indexOf('pass_outcome_touchdown') !== -1) {
 					passOutcome = 'pass_outcome_touchdown';
+				} else if (players.events.indexOf('pass_outcome_interception') !== -1) {
+					passOutcome = 'pass_outcome_interception';
+				} else if (players.events.indexOf('pass_outcome_incomplete') !== -1) {
+					passOutcome = 'pass_outcome_incomplete';
 				}
 
 				pdf.doc.circle(
 					field.getX( qb.inPlayTracking.events['pass_forward'].x ),
 					field.getY( qb.inPlayTracking.events['pass_forward'].y ),
 					2
-				);
+				)
+				.lineWidth(1)
+				.fillAndStroke("#FFA500", "#ff9900");
 				
 				if (wr) {
 					receiver = wr;
@@ -169,32 +183,44 @@ exports.handler = function(event, context, callback) {
 					receiver = rb;
 				}
 
-				pdf.doc.circle(
-					field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
-					field.getY( receiver.inPlayTracking.events[passOutcome].y ),
-					2
-				)
-				.lineWidth(1)
-				.fillAndStroke("#FFA500", "#ff9900");
+				if (passOutcome == 'pass_outcome_incomplete' || passOutcome == 'pass_outcome_interception') {
+					pdf.doc.circle(
+						field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
+						field.getY( receiver.inPlayTracking.events[passOutcome].y ),
+						3
+					)
+					.fill("black");
+					pdf.doc.fontSize(6)
+					.fillColor("red")
+					.text('X', field.getX( receiver.inPlayTracking.events[passOutcome].x ) - 2, field.getY( receiver.inPlayTracking.events[passOutcome].y ) - 2);
+				} else {
+					pdf.doc.circle(
+						field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
+						field.getY( receiver.inPlayTracking.events[passOutcome].y ),
+						2
+					)
+					.lineWidth(1)
+					.fillAndStroke("#FFA500", "#ff9900");
+				}
+
 
 				let topSpeed = Math.round(receiver.inPlayTracking.maxSpeed * 2.04545);
-
-				pdf.doc.circle(
-					field.getX( receiver.inPlayTracking.events['top_speed'].x ), 
-					field.getY( receiver.inPlayTracking.events['top_speed'].y ),
-					4
-				)
-				.lineWidth(1)
-				.fillAndStroke("white", "#ff0000");
-
-				pdf.doc.fontSize(4)
-				.fillColor("black")
-				.text(topSpeed, field.getX( receiver.inPlayTracking.events['top_speed'].x ) - 4, field.getY( receiver.inPlayTracking.events['top_speed'].y ) - 1.5, { width: 8, align: 'center' } );
+				if (passOutcome != 'pass_outcome_interception') {
 				
+					pdf.doc.circle(
+						field.getX( receiver.inPlayTracking.events['top_speed'].x ), 
+						field.getY( receiver.inPlayTracking.events['top_speed'].y ),
+						4
+					)
+					.lineWidth(1)
+					.fillAndStroke("white", "#ff0000");
 
-
-
+					pdf.doc.fontSize(4)
+					.fillColor("black")
+					.text(topSpeed, field.getX( receiver.inPlayTracking.events['top_speed'].x ) - 4, field.getY( receiver.inPlayTracking.events['top_speed'].y ) - 1.5, { width: 8, align: 'center' } );
+				}
 				
+				pdf.doc.fill('black');
 
 				pdf.doc.moveTo(
 					field.getX( qb.inPlayTracking.events['pass_forward'].x ), 
@@ -239,14 +265,13 @@ exports.handler = function(event, context, callback) {
 				if (qb.touchdown) {
 					statDesc += ' touchdown pass';
 				} else if (qb.firstdown) {
-					statDesc += ' pass for 1st down';
+					statDesc += ' completion for 1st down';
+				} else if (passOutcome == 'pass_outcome_incomplete') {
+					statDesc = 'Incomplete Pass';
+				} else if (passOutcome == 'pass_outcome_interception') {
+					statDesc = 'Interception';
 				} else {
 					statDesc += ' completion';
-				}
-
-				let statContext = event.clock + ', ' + moment().dayOfYear(event.start_situation.down).format('DDDo') + ' & ' + event.start_situation.yfd;
-				if (event.period) {
-					statContext = moment().dayOfYear(event.period).format('DDDo') + ' Quarter, ' + statContext;
 				}
 
 				pdf.doc.image(base + qb.gsisId + '.png', qbHeadX, qbHeadY, { fit: [ photoSize, photoSize] })
@@ -262,7 +287,91 @@ exports.handler = function(event, context, callback) {
 				
 			}
 
+		}
+
+		if (event.play_type == 'rush') {
+
+			let rb = _.find(players.players, { 'position': 'RB' });
+			let rushStart = false;
+			let rushOutcome = 'tackle';
+			if (rb.inPlayTracking.events.pass_lateral) {
+				rushStart = 'pass_lateral';
+			} else if (rb.inPlayTracking.events.handoff) {
+				rushStart = 'handoff';
+			}
+			if (!rb.inPlayTracking.events.tackle && rb.inPlayTracking.events.out_of_bounds) {
+				rushOutcome = 'out_of_bounds';
+			} else if (!rb.inPlayTracking.events.tackle && rb.inPlayTracking.events.touchdown) {
+				rushOutcome = 'touchdown';
+			}
+
+			pdf.doc.circle(
+				field.getX( rb.inPlayTracking.events[rushStart].x ), 
+				field.getY( rb.inPlayTracking.events[rushStart].y ),
+				2
+			)
+			.lineWidth(1)
+			.fillAndStroke("#FFA500", "#ff9900");
+
+			let topSpeed = Math.round(rb.inPlayTracking.maxSpeed * 2.04545);
+
+			pdf.doc.circle(
+				field.getX( rb.inPlayTracking.events['top_speed'].x ), 
+				field.getY( rb.inPlayTracking.events['top_speed'].y ),
+				4
+			)
+			.lineWidth(1)
+			.fillAndStroke("white", "#ff0000");
+
+			pdf.doc.fontSize(4)
+			.fillColor("black")
+			.text(topSpeed, field.getX( rb.inPlayTracking.events['top_speed'].x ) - 4, field.getY( rb.inPlayTracking.events['top_speed'].y ) - 1.5, { width: 8, align: 'center' } );
 			
+			if (rb.inPlayTracking.events.tackle) {
+				pdf.doc.circle(
+					field.getX( rb.inPlayTracking.events['tackle'].x ), 
+					field.getY( rb.inPlayTracking.events['tackle'].y ),
+					4
+				)
+				.fill("#ff9900");
+			}
+
+			pdf.doc.fill("black");
+
+			let rbHeadX = 0;
+			let rbHeadY = 0;
+			let rbOffset = 5;
+			
+			if (field.direction == 'right') {
+				rbOffset = -8;
+			}
+
+			let rbAdjusted = checkBounds( field, rb.inPlayTracking.events[rushStart].x, rb.inPlayTracking.events[rushStart].y, rbOffset);	
+			rbHeadX = rbAdjusted.x;
+			rbHeadY = rbAdjusted.y;
+
+			let statPlacement = { width: (field.fieldWidth - 30), align: 'right'};
+			if (rb.inPlayTracking.events[rushOutcome].x > 60) {
+				statPlacement = { width: (field.fieldWidth - 30), align: 'left' };
+			}
+
+			let statDesc = rb.yards + ' yard';
+			if (rb.touchdown) {
+				statDesc += ' touchdown rush';
+			} else if (rb.firstdown) {
+				statDesc += ' rush for 1st down';
+			} else {
+				statDesc += ' rush';
+			}
+
+			pdf.doc.image(base + rb.gsisId + '.png', rbHeadX, rbHeadY, { fit: [ photoSize, photoSize] })
+			.fontSize(5)
+			.text(rb.name, (rbHeadX + (photoSize / 2)) - (nameSize / 2), (rbHeadY + photoSize + 1), { width: nameSize, align: 'center'} )
+			.fontSize(8)
+			.text(statContext, 15, 5, statPlacement )	
+			.moveDown(.2)
+			.text(statDesc, statPlacement )	
+
 		}
 
 		pdf.docStream.on('finish', () => {

@@ -1,0 +1,114 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "07def944-3717-4f57-922e-96a29f8308e8",
+              "sequence": 888,
+              "reference": "888",
+              "clock": "12:20",
+              "home_points": 6,
+              "away_points": 0,
+              "play_type": "rush",
+              "scoring_play": true,
+              "play_clock": 9,
+              "wall_clock": "2017-02-06T00:15:46+00:00",
+              "men_in_box": 10,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Left Sideline",
+              "right_tightends": 1,
+              "hash_mark": "Right Hash",
+              "qb_at_snap": "Shotgun",
+              "huddle": "Huddle",
+              "running_lane": 1,
+              "start_situation": {
+                "clock": "12:20",
+                "down": 2,
+                "yfd": 1,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 5
+                }
+              },
+              "end_situation": {
+                "clock": "12:15",
+                "down": 0,
+                "yfd": 0,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 15
+                }
+              },
+              "description": "(12:20) (Shotgun) 24-D.Freeman left end for 5 yards, TOUCHDOWN.",
+              "alt_description": "(12:20) (Shotgun) D.Freeman left end for 5 yards, TOUCHDOWN.",
+              "score": {
+                "sequence": 1,
+                "clock": "12:15",
+                "points": 7,
+                "home_points": 7,
+                "away_points": 0
+              },
+              "statistics": [
+                {
+                  "stat_type": "rush",
+                  "attempt": 1,
+                  "yards": 5,
+                  "touchdown": 1,
+                  "firstdown": 1,
+                  "inside_20": 1,
+                  "goaltogo": 0,
+                  "broken_tackles": 0,
+                  "kneel_down": 0,
+                  "scramble": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Devonta Freeman",
+                    "jersey": "24",
+                    "reference": "00-0031285",
+                    "id": "2e50c78f-fa3b-48cf-8531-6eeddc93d88d",
+                    "position": "RB"
+                  }
+                },
+                {
+                  "stat_type": "first_down",
+                  "category": "rush",
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  }
+                }
+              ]
+            }

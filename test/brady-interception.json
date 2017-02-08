@@ -1,0 +1,191 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "f0be75a6-a6f2-4052-993c-fec1c265c748",
+              "sequence": 1587,
+              "reference": "1587",
+              "clock": "2:36",
+              "home_points": 20,
+              "away_points": 0,
+              "play_type": "pass",
+              "scoring_play": true,
+              "play_clock": 2,
+              "wall_clock": "2017-02-06T00:44:08+00:00",
+              "players_rushed": 4,
+              "men_in_box": 5,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Left",
+              "hash_mark": "Middle",
+              "pocket_location": "Middle",
+              "qb_at_snap": "Shotgun",
+              "huddle": "Huddle",
+              "pass_route": "Slant",
+              "start_situation": {
+                "clock": "2:36",
+                "down": 3,
+                "yfd": 6,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 23
+                }
+              },
+              "end_situation": {
+                "clock": "2:21",
+                "down": 0,
+                "yfd": 0,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 15
+                }
+              },
+              "description": "(2:36) (Shotgun) 12-T.Brady pass short left intended for 80-D.Amendola INTERCEPTED by 23-R.Alford at ATL 18. 23-R.Alford for 82 yards, TOUCHDOWN.",
+              "alt_description": "(2:36) (Shotgun) T.Brady pass short left intended for D.Amendola INTERCEPTED by R.Alford at ATL 18. R.Alford for 82 yards, TOUCHDOWN.",
+              "score": {
+                "sequence": 3,
+                "clock": "2:21",
+                "points": 7,
+                "home_points": 21,
+                "away_points": 0
+              },
+              "statistics": [
+                {
+                  "stat_type": "pass",
+                  "attempt": 1,
+                  "att_yards": 5,
+                  "interception": 1,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "incompletion_type": "Pass Defended",
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "pocket_time": 2.359,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Tom Brady",
+                    "jersey": "12",
+                    "reference": "00-0019596",
+                    "id": "41c44740-d0f6-44ab-8347-3b5d515e5ecf",
+                    "position": "QB"
+                  }
+                },
+                {
+                  "stat_type": "receive",
+                  "target": 1,
+                  "dropped": 0,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "catchable": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Danny Amendola",
+                    "jersey": "80",
+                    "reference": "00-0026035",
+                    "id": "973bfe3c-6d0d-4130-a79c-f860650b1da6",
+                    "position": "WR"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "def_target": 1,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Brian Poole",
+                    "jersey": "34",
+                    "reference": "00-0032596",
+                    "id": "901c84c7-ef46-4c9f-9941-ac8becc02986",
+                    "position": "CB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "pass_defended": 1,
+                  "interception": 1,
+                  "int_yards": 82,
+                  "int_touchdown": 1,
+                  "def_target": 1,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Robert Alford",
+                    "jersey": "23",
+                    "reference": "00-0030528",
+                    "id": "4f5ca039-21f3-4045-9c2e-c0b4d5d564c5",
+                    "position": "CB"
+                  }
+                },
+                {
+                  "stat_type": "down_conversion",
+                  "down": 3,
+                  "attempt": 1,
+                  "complete": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  }
+                }
+              ]
+            }
+          

@@ -1,0 +1,202 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "7029625a-bb8b-4b2a-a3e6-cc8129e08971",
+              "sequence": 161,
+              "reference": "161",
+              "clock": "13:37",
+              "home_points": 0,
+              "away_points": 0,
+              "play_type": "rush",
+              "play_clock": 14,
+              "wall_clock": "2017-02-05T23:41:25+00:00",
+              "men_in_box": 7,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Left",
+              "right_tightends": 1,
+              "hash_mark": "Right Hash",
+              "qb_at_snap": "Under Center",
+              "huddle": "Huddle",
+              "running_lane": 5,
+              "start_situation": {
+                "clock": "13:37",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 8
+                }
+              },
+              "end_situation": {
+                "clock": "12:55",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 45
+                }
+              },
+              "description": "(13:37) 24-D.Freeman left end to ATL 45 for 37 yards (21-M.Butler; 32-D.McCourty).",
+              "alt_description": "(13:37) D.Freeman left end to ATL 45 for 37 yards (M.Butler; D.McCourty).",
+              "statistics": [
+                {
+                  "stat_type": "rush",
+                  "attempt": 1,
+                  "yards": 37,
+                  "firstdown": 1,
+                  "inside_20": 0,
+                  "goaltogo": 0,
+                  "broken_tackles": 1,
+                  "kneel_down": 0,
+                  "scramble": 0,
+                  "yards_after_contact": 29,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Devonta Freeman",
+                    "jersey": "24",
+                    "reference": "00-0031285",
+                    "id": "2e50c78f-fa3b-48cf-8531-6eeddc93d88d",
+                    "position": "RB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "ast_tackle": 1,
+                  "primary": 0,
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Devin McCourty",
+                    "jersey": "32",
+                    "reference": "00-0027647",
+                    "id": "88d2dbf4-3b9f-43ea-bac6-a8722cb24f43",
+                    "position": "DB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "ast_tackle": 1,
+                  "primary": 0,
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Malcolm Butler",
+                    "jersey": "21",
+                    "reference": "00-0031218",
+                    "id": "ab49bafe-7023-46ce-9606-9a9823eabee6",
+                    "position": "CB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 1,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Duron Harmon",
+                    "jersey": "30",
+                    "reference": "00-0030383",
+                    "id": "a2802951-e573-4e8f-ad31-14b9ae5f8e7c",
+                    "position": "DB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 1,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Rob Ninkovich",
+                    "jersey": "50",
+                    "reference": "00-0024349",
+                    "id": "f3e2f6dd-53c4-4d8c-81d7-9e9d3c024e0c",
+                    "position": "LB"
+                  }
+                },
+                {
+                  "stat_type": "first_down",
+                  "category": "rush",
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  }
+                }
+              ]
+            }

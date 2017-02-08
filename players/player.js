@@ -10,7 +10,6 @@ const endEvents = [
 	"touchdown",
 	"tackle",
 	"pass_outcome_incomplete", 
-	"pass_outcome_interception", 
 	"touchdown", 
 	"qb_sack", 
 	"pass_outcome_touchdown", 
