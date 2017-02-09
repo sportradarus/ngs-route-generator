@@ -47,6 +47,9 @@ class PuntKick extends Base {
 
 		if (!kicker && punter) {
 			kicker = punter;
+		}
+
+		if (kicker.inPlayTracking.events.punt) {
 			kickEvent = 'punt';
 			kickOutcome = 'punt_received';
 			statDesc = "Punt";
@@ -80,8 +83,6 @@ class PuntKick extends Base {
 			// draw topSpeed circle, this should be above outcome drawing, to ensure priority and overwriting
 			this.topSpeed(returner);
 		}
-
-		
 
 		
 		this.doc.circle(
