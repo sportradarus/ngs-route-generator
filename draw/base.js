@@ -24,7 +24,7 @@ class Base {
 
 		_.forEach(this.players, (player) => {
 			
-			if (["QB","RB","WR","TE","FB"].indexOf(player.position) !== -1) {
+			if (["QB","RB","WR","TE","FB"].indexOf(player.position) !== -1 && player.statType != 'defense') {
 				this.doc.strokeColor("#458B00");
 			} else {
 				this.doc.strokeColor("#333333");
@@ -60,7 +60,7 @@ class Base {
 
 		// adjust based on field bounds
 		if (playerX < 0) {
-			playerX = 0;
+			playerX = 5;
 		}
 		if (playerY < 0) {
 			playerY = 0;
@@ -100,7 +100,10 @@ class Base {
 			this.statPlacement = { width: (this.field.fieldWidth - ((this.field.mag * 10) * 2))-10, align: 'left' };
 		}
 
-		this.statContext = event.clock + ', ' + moment().dayOfYear(event.start_situation.down).format('DDDo') + ' & ' + event.start_situation.yfd;
+		this.statContext = event.clock;
+		if (event.start_situation.down) {
+			this.statContext += ', ' + moment().dayOfYear(event.start_situation.down).format('DDDo') + ' & ' + event.start_situation.yfd;
+		}
 		if (event.period) {
 			this.statContext = moment().dayOfYear(event.period).format('DDDo') + ' Quarter, ' + this.statContext;
 		}

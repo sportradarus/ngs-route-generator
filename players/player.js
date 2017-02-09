@@ -32,6 +32,7 @@ class Player extends Headshots {
 		super();
 		this.srusId = stat.player.id;
 		this.gsisId = stat.player.reference;
+		this.statType = stat.stat_type;
 		this.position = stat.player.position;
 		this.name = stat.player.name;
 		this.jersey = stat.player.jersey;
@@ -40,6 +41,8 @@ class Player extends Headshots {
 		this.touchdown = stat.touchdown;
 		this.firstdown = stat.firstdown;
 		this.reception = stat.reception;
+		this.sack = stat.sack;
+		this.sackYards = stat.sack_yards;
 		this.tracking = {
 			data: [],
 			events: {},
@@ -92,7 +95,7 @@ class Player extends Headshots {
 		
 		this.inPlayTracking.data = _.filter(this.tracking.data, (t) => {
 			
-			if (t.event && t.event == 'line_set') {
+			if (t.event && (t.event == 'line_set' || t.event == 'kickoff')) {
 				inPlay = true;
 			}
 

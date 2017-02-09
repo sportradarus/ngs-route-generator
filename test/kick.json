@@ -1,0 +1,130 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "791a2548-8036-464d-bc34-7a08a6614d78",
+              "sequence": 4092,
+              "reference": "4092",
+              "clock": "00:57",
+              "home_points": 28,
+              "away_points": 28,
+              "play_type": "kickoff",
+              "play_clock": 8,
+              "wall_clock": "2017-02-06T03:07:47+00:00",
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "hash_mark": "Right Hash",
+              "start_situation": {
+                "clock": "00:57",
+                "down": 0,
+                "yfd": 0,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 40
+                }
+              },
+              "end_situation": {
+                "clock": "00:52",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 11
+                }
+              },
+              "description": "3-S.Gostkowski kicks 60 yards from NE 40 to ATL 0. 14-E.Weems to ATL 11 for 11 yards (38-B.Bolden).",
+              "alt_description": "S.Gostkowski kicks 60 yards from NE 40 to ATL 0. E.Weems to ATL 11 for 11 yards (B.Bolden).",
+              "statistics": [
+                {
+                  "stat_type": "kick",
+                  "attempt": 1,
+                  "yards": 60,
+                  "inside_20": 1,
+                  "endzone": 1,
+                  "onside_attempt": 0,
+                  "onside_success": 0,
+                  "squib_kick": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Stephen Gostkowski",
+                    "jersey": "03",
+                    "reference": "00-0024333",
+                    "id": "a527b7db-0b52-4379-9e4c-2e08c1fe1bed",
+                    "position": "K"
+                  }
+                },
+                {
+                  "stat_type": "return",
+                  "return": 1,
+                  "yards": 11,
+                  "category": "kick_return",
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Eric Weems",
+                    "jersey": "14",
+                    "reference": "00-0024535",
+                    "id": "1a5a14e3-0299-4926-b232-a0a109a5f5db",
+                    "position": "WR"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "tackle": 1,
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 0,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Brandon Bolden",
+                    "jersey": "38",
+                    "reference": "00-0029239",
+                    "id": "dba5e3ec-2c77-4f65-ad6e-cee246f816ef",
+                    "position": "RB"
+                  }
+                }
+              ]
+            }

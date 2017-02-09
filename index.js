@@ -95,15 +95,26 @@ exports.handler = function(event, context, callback) {
 		// for passing completions, draw pass from QB to WR				
 		if (event.play_type == 'pass') {
 			
-			var pass = new Draw.Pass(pdf, field, event, base, players);
-			pass.draw();	
+			let qb = _.find(players.players, { 'position': 'QB' });
+			if (qb.inPlayTracking.events.qb_sack) {
+				var sack = new Draw.Sack(pdf, field, event, base, players);
+				sack.draw();
+			} else {
+				var pass = new Draw.Pass(pdf, field, event, base, players);
+				pass.draw();
+			}
 		
 		} else if (event.play_type == 'rush') {
 			
 			var rush = new Draw.Rush(pdf, field, event, base, players);
 			rush.draw();
 		
-		}
+		} else if (event.play_type == 'kickoff' || event.play_type == 'punt') {
+
+			var puntKick = new Draw.PuntKick(pdf, field, event, base, players);
+			puntKick.draw();
+
+		}	
 
 		pdf.docStream.on('finish', () => {
 			console.log('done streaming');

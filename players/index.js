@@ -24,7 +24,7 @@ class Players {
 		
 		this.players = _(stats)
 		.filter((stat) => {
-			return stat.stat_type == 'pass' || stat.stat_type == 'receive' || stat.stat_type == 'rush' || stat.stat_type == 'defense';
+			return stat.stat_type == 'pass' || stat.stat_type == 'receive' || stat.stat_type == 'rush' || stat.stat_type == 'defense' || stat.stat_type == 'kick' || stat.stat_type == 'punt' || stat.stat_type == 'return';
 		})
 		.map((stat) => {
 			return new Player(stat);

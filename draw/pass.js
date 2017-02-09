@@ -12,7 +12,6 @@ class Pass extends Base {
 		}
 		super(pdf, field, baseDir, players);
 		this.event = event;
-		console.log(players.events);
 	}
 
 	
@@ -59,8 +58,7 @@ class Pass extends Base {
 			rOffset = 6;
 		}
 		
-		console.log(receiver.inPlayTracking.events);
-
+		
 		let passOutcome = '';
 		if (receiver.inPlayTracking.events.pass_outcome_caught) {
 			passOutcome = 'pass_outcome_caught';
@@ -85,8 +83,13 @@ class Pass extends Base {
 		.lineWidth(1)
 		.fillAndStroke("#FFA500", "#ff9900");
 		
-				
 		
+		// draw topSpeed circle, this should be above outcome drawing, to ensure priority and overwriting
+		this.topSpeed(receiver);		
+
+		
+
+
 		// draw pass outcome event circle
 		if (passOutcome == 'pass_outcome_incomplete' || passOutcome == 'pass_outcome_interception') {
 			this.doc.circle(
@@ -98,7 +101,8 @@ class Pass extends Base {
 			
 			this.doc.fontSize(6)
 			.fillColor("red")
-			.text('X', this.field.getX( receiver.inPlayTracking.events[passOutcome].x ) - 2, this.field.getY( receiver.inPlayTracking.events[passOutcome].y ) - 2);
+			.text('X', this.field.getX( receiver.inPlayTracking.events[passOutcome].x ) - 2, this.field.getY( receiver.inPlayTracking.events[passOutcome].y ) - 2)
+			.fillColor("black");
 		} else {
 			this.doc.circle(
 				this.field.getX( receiver.inPlayTracking.events[passOutcome].x ), 
@@ -106,14 +110,13 @@ class Pass extends Base {
 				2
 			)
 			.lineWidth(1)
-			.fillAndStroke("#FFA500", "#ff9900");
+			.fillAndStroke("#FFA500", "#ff9900")
+			.fillColor("black");
 		}
 
 		
-		// draw topSpeed circle
-		this.topSpeed(receiver);		
 		
-
+		
 				
 		// draw pass line
 		this.doc.moveTo(
