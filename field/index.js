@@ -42,14 +42,25 @@ class Field {
 	}
 
 	drawField() {
+		
+		// end zones
+		this.doc.rect(0, 0, 10 * this.mag, this.fieldHeight);
+		this.doc.fill('#F0F0F0');
+
+		// end zones
+		this.doc.rect(this.fieldWidth - (10 * this.mag), 0, (10 * this.mag), this.fieldHeight);
+		this.doc.fill('#F0F0F0');
+
 		this.doc.moveTo(0, 0)
 		.lineTo(this.fieldWidth, 0)
 		.lineTo(this.fieldWidth, this.fieldHeight)
 		.lineTo(0, this.fieldHeight)
 		.lineTo(0, 0)
 		.undash()
-		.strokeColor("#ccc")
+		.strokeColor("#333")
 		.stroke();
+
+
 	}
 
 	drawScrimmage() {

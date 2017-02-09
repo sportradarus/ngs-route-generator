@@ -1,0 +1,137 @@
+{
+              "gsisGameId": 57167,
+              "period": 4,
+              "type": "play",
+              "id": "30aa306a-9105-4f48-b531-1b3e240bf8f5",
+              "sequence": 3284,
+              "reference": "3284",
+              "clock": "10:25",
+              "home_points": 28,
+              "away_points": 9,
+              "play_type": "pass",
+              "goaltogo": true,
+              "play_clock": 5,
+              "wall_clock": "2017-02-06T02:27:41+00:00",
+              "players_rushed": 4,
+              "men_in_box": 5,
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "blitz": false,
+              "play_direction": "Left",
+              "hash_mark": "Left Hash",
+              "pocket_location": "Scramble Left",
+              "qb_at_snap": "Shotgun",
+              "huddle": "Huddle",
+              "start_situation": {
+                "clock": "10:25",
+                "down": 3,
+                "yfd": 10,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 10
+                }
+              },
+              "end_situation": {
+                "clock": "9:48",
+                "down": 4,
+                "yfd": 15,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 15
+                }
+              },
+              "description": "(10:25) (Shotgun) 12-T.Brady sacked at ATL 15 for -5 yards (97-G.Jarrett).",
+              "alt_description": "(10:25) (Shotgun) T.Brady sacked at ATL 15 for -5 yards (G.Jarrett).",
+              "statistics": [
+                {
+                  "stat_type": "pass",
+                  "sack": 1,
+                  "sack_yards": -5,
+                  "inside_20": 0,
+                  "goaltogo": 1,
+                  "blitz": 0,
+                  "hurry": 1,
+                  "knockdown": 0,
+                  "pocket_time": 1.968,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Tom Brady",
+                    "jersey": "12",
+                    "reference": "00-0019596",
+                    "id": "41c44740-d0f6-44ab-8347-3b5d515e5ecf",
+                    "position": "QB"
+                  }
+                },
+                {
+                  "stat_type": "defense",
+                  "tackle": 1,
+                  "sack": 1,
+                  "sack_yards": -5,
+                  "qb_hit": 1,
+                  "tlost": 1,
+                  "tlost_yards": 5,
+                  "def_target": 0,
+                  "def_comp": 0,
+                  "blitz": 0,
+                  "hurry": 1,
+                  "knockdown": 0,
+                  "missed_tackles": 0,
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  },
+                  "player": {
+                    "name": "Grady Jarrett",
+                    "jersey": "97",
+                    "reference": "00-0031583",
+                    "id": "e1fe1900-fae3-414e-8530-55eece80471f",
+                    "position": "DT"
+                  }
+                },
+                {
+                  "stat_type": "down_conversion",
+                  "down": 3,
+                  "attempt": 1,
+                  "complete": 0,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  }
+                }
+              ]
+            }

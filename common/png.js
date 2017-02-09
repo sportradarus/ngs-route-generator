@@ -15,6 +15,8 @@ class PNG {
 			
 			// crop pdf and convert to PNG
 			// -trim '-bordercolor', 'none', '-border', '10x10',
+			//'-transparent',
+			//'white',
 			
 			let conversion = spawn('convert', [
 					'-density',
@@ -25,8 +27,6 @@ class PNG {
 					'-trim',
 					'-fuzz',
 					'10%',
-					'-transparent',
-					'white',
 					'+antialias',
 					pngFile
 				],
