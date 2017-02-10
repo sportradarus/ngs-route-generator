@@ -30,6 +30,7 @@
 		"test-route-interception1": "docker-compose run app node-lambda run --eventFile=./test/brady-interception.json --handler index.handler",
 
 		"test-route-sack1": "docker-compose run app node-lambda run --eventFile=./test/brady-sack.json --handler index.handler",
+		"test-route-sack2": "docker-compose run app node-lambda run --eventFile=./test/ryan-sack.json --handler index.handler",
 
 		"test-route-punt": "docker-compose run app node-lambda run --eventFile=./test/punt.json --handler index.handler",
 		

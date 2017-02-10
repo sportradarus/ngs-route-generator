@@ -41,18 +41,27 @@ class Sack extends Base {
 			sOffset = 6;
 		}
 		
+		let sackEvent;
+		if (qb.inPlayTracking.events.qb_sack) {
+			sackEvent = 'qb_sack';
+		} else {
+			sackEvent = 'tackle';
+		}
+
 		
 		this.doc.circle(
-			this.field.getX( qb.inPlayTracking.events.qb_sack.x ), 
-			this.field.getY( qb.inPlayTracking.events.qb_sack.y ),
+			this.field.getX( qb.inPlayTracking.events[sackEvent].x ), 
+			this.field.getY( qb.inPlayTracking.events[sackEvent].y ),
 			3
 		)
 		.fill("red")
 		.fill("black");
 		
 		
+
+		
 				
-		let qbAdjusted = this.checkBounds( qb.inPlayTracking.events['qb_sack'].x, qb.inPlayTracking.events['qb_sack'].y, qbOffset);	
+		let qbAdjusted = this.checkBounds( qb.inPlayTracking.events[sackEvent].x, qb.inPlayTracking.events[sackEvent].y, qbOffset);	
 		qbHeadX = qbAdjusted.x;
 		qbHeadY = qbAdjusted.y;
 
@@ -63,7 +72,7 @@ class Sack extends Base {
 		
 		
 		// get play quarter and clock
-		this.setStatContext(this.event, qb.inPlayTracking.events['qb_sack']);
+		this.setStatContext(this.event, qb.inPlayTracking.events[sackEvent]);
 		
 
 		

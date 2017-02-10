@@ -96,7 +96,7 @@ exports.handler = function(event, context, callback) {
 		if (event.play_type == 'pass') {
 			
 			let qb = _.find(players.players, { 'position': 'QB' });
-			if (qb.inPlayTracking.events.qb_sack) {
+			if (qb.inPlayTracking.events.qb_sack || qb.sack === 1) {
 				var sack = new Draw.Sack(pdf, field, event, base, players);
 				sack.draw();
 			} else {
