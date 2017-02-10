@@ -1,0 +1,95 @@
+{
+              "gsisGameId": 57167,
+              "period": 1,
+              "type": "play",
+              "id": "6a824b71-2b07-4388-a99c-1ecf133b4d75",
+              "sequence": 1010,
+              "reference": "1010",
+              "clock": "10:45",
+              "home_points": 7,
+              "away_points": 0,
+              "play_type": "punt",
+              "play_clock": 17,
+              "wall_clock": "2017-02-06T00:22:15+00:00",
+              "fake_punt": false,
+              "fake_field_goal": false,
+              "screen_pass": false,
+              "hash_mark": "Left Hash",
+              "huddle": "Huddle",
+              "start_situation": {
+                "clock": "10:45",
+                "down": 4,
+                "yfd": 2,
+                "possession": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                },
+                "location": {
+                  "name": "Patriots",
+                  "market": "New England",
+                  "alias": "NE",
+                  "reference": "4994",
+                  "id": "97354895-8c77-4fd4-a860-32e62ea7382a",
+                  "yardline": 24
+                }
+              },
+              "end_situation": {
+                "clock": "10:37",
+                "down": 1,
+                "yfd": 10,
+                "possession": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                },
+                "location": {
+                  "name": "Falcons",
+                  "market": "Atlanta",
+                  "alias": "ATL",
+                  "reference": "4978",
+                  "id": "e6aa13a4-0055-48a9-bc41-be28dc106929",
+                  "yardline": 38
+                }
+              },
+              "description": "(10:45) 6-R.Allen punts 38 yards to ATL 38, Center-49-J.Cardona, downed by NE-31-J.Jones. (The Punt Hangtime was 3.88 seconds.)",
+              "alt_description": "(10:45) R.Allen punts 38 yards to ATL 38, Center-J.Cardona, downed by NE-J.Jones. (The Punt Hangtime was 3.88 seconds.)",
+              "statistics": [
+                {
+                  "stat_type": "punt",
+                  "attempt": 1,
+                  "yards": 38,
+                  "hang_time": 3.84,
+                  "team": {
+                    "name": "Patriots",
+                    "market": "New England",
+                    "alias": "NE",
+                    "reference": "4994",
+                    "id": "97354895-8c77-4fd4-a860-32e62ea7382a"
+                  },
+                  "player": {
+                    "name": "Ryan Allen",
+                    "jersey": "06",
+                    "reference": "00-0029984",
+                    "id": "b1a2aa6e-7104-4e35-910d-fbefddd74a78",
+                    "position": "P"
+                  }
+                },
+                {
+                  "stat_type": "return",
+                  "downed": 1,
+                  "category": "punt_return",
+                  "team": {
+                    "name": "Falcons",
+                    "market": "Atlanta",
+                    "alias": "ATL",
+                    "reference": "4978",
+                    "id": "e6aa13a4-0055-48a9-bc41-be28dc106929"
+                  }
+                }
+              ]
+            }

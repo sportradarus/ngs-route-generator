@@ -26,6 +26,7 @@
 		
 		"test-route-incomplete1": "docker-compose run app node-lambda run --eventFile=./test/edelman-incomplete.json --handler index.handler",
 		"test-route-incomplete2": "docker-compose run app node-lambda run --eventFile=./test/mitchell-incomplete.json --handler index.handler",
+		"test-route-incomplete3": "docker-compose run app node-lambda run --eventFile=./test/rodgers-incomplete.json --handler index.handler",
 
 		"test-route-interception1": "docker-compose run app node-lambda run --eventFile=./test/brady-interception.json --handler index.handler",
 

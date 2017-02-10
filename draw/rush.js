@@ -21,12 +21,25 @@ class Rush extends Base {
 		this.lines();
 
 		let rb = _.find(this.players, { 'position': 'RB' });
+		if (!rb) {
+			rb = _.find(this.players, { 'position': 'FB' });
+		}
+		if (!rb) {
+			rb = _.find(this.players, { 'position': 'QB' });
+		}
+		if (!rb || !rb.yards) {
+			console.log('no RB');
+			return;
+		}
+
 		let rushStart = false;
 		let rushOutcome = 'tackle';
 		if (rb.inPlayTracking.events.pass_lateral) {
 			rushStart = 'pass_lateral';
 		} else if (rb.inPlayTracking.events.handoff) {
 			rushStart = 'handoff';
+		} else {
+			rushStart = 'ball_snap';
 		}
 		if (!rb.inPlayTracking.events.tackle && rb.inPlayTracking.events.out_of_bounds) {
 			rushOutcome = 'out_of_bounds';

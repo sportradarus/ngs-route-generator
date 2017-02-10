@@ -20,10 +20,14 @@ class Pass extends Base {
 		// draw base lines for all key players
 		this.lines();
 
+		
 		let qb = _.find(this.players, { 'position': 'QB' });
 		let wr = _.find(this.players, { 'position': 'WR' });
 		let te = _.find(this.players, { 'position': 'TE' });
 		let rb = _.find(this.players, { 'position': 'RB' });
+		if (!rb) {
+			rb = _.find(this.players, { 'position': 'FB' });
+		}
 		let receiver = false;
 
 		if (!qb) {
